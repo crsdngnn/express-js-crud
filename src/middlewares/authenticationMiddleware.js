@@ -1,7 +1,7 @@
 import { JWT_SECRET } from '../configs/config.js';
 import { jwt } from 'jsonwebtoken';
 
-const authMiddleware = (req, res, next) => {
+export const authMiddleware = (req, res, next) => {
   const token = req.header('Authorization')?.replace('Bearer ', '');
   
   if (!token) return res.status(401).json({ message: 'Unauthorized' });
@@ -12,5 +12,3 @@ const authMiddleware = (req, res, next) => {
     next();
   });
 };
-
-module.exports = authMiddleware;
